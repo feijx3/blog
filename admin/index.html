@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!--
+      后台页单独的内容安全策略：脚本只允许本站自托管的这一份（script-src 'self'），
+      网络请求只允许 GitHub API，以及 Sveltia 运行时读取固定版本界面翻译所需的 unpkg（只读数据，不能执行脚本）；
+      字体只放行 jsDelivr。这个页面不加载统计脚本，也不嵌入任何第三方代码（令牌保存在浏览器里，要尽量收窄暴露面）。
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' blob: data: https://*.githubusercontent.com; media-src blob:; frame-src blob:; connect-src 'self' blob: data: https://api.github.com https://www.githubstatus.com https://unpkg.com; manifest-src blob:; base-uri 'self'; form-action 'self'; object-src 'none'"
+    />
+    <title>后台 · Really1337</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/theme.css" />
+    <link rel="stylesheet" href="/admin/theme.css" />
+    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
+  </head>
+  <body>
+    <!-- 脚本由 scripts/copy-cms.mjs 在构建时从 node_modules 复制过来（版本锁定在 package-lock.json） -->
+    <script src="/admin/sveltia-cms.js"></script>
+  </body>
+</html>

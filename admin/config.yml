@@ -1,0 +1,112 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+#
+# 博客后台（Sveltia CMS）的配置。后台只负责读写 feijx3/blog-src 仓库里的文件，
+# 保存 = 向 main 提交一次，GitHub Actions 随后自动构建并部署。
+
+backend:
+  name: github
+  repo: feijx3/blog-src
+  branch: main
+  commit_messages:
+    create: '后台：新建{{collection}}「{{slug}}」'
+    update: '后台：更新{{collection}}「{{slug}}」'
+    delete: '后台：删除{{collection}}「{{slug}}」'
+    uploadMedia: '后台：上传「{{path}}」'
+    deleteMedia: '后台：删除「{{path}}」'
+
+site_url: https://blog.zelix.asia
+app_title: Really1337 · 写作后台
+logo:
+  src: /favicon.svg
+  show_in_header: true
+
+# 图片存进仓库，随站点一起发布
+media_folder: public/images
+public_folder: /images
+
+# 文章网址（文件名）只会是 ASCII；保存前可以点右侧铅笔图标自己修改
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: '-'
+
+output:
+  # 空的可选字段不写进 front matter，否则会触发 Astro 内容集合的 zod 校验失败
+  omit_empty_optional_fields: true
+
+collections:
+  - name: posts
+    label: 文章
+    label_singular: 文章
+    folder: src/content/posts
+    extension: md
+    format: frontmatter
+    create: true
+    # 兜底的文件名（日期 + 随机码）；保存前点铅笔图标可以改成自己想要的，比如 my-first-post
+    slug: '{{year}}{{month}}{{day}}-{{uuid_shorter}}'
+    preview_path: 'posts/{{slug}}/'
+    summary: '{{date}}　{{title}}'
+    sortable_fields: [date, title]
+    fields:
+      # 放在最顶部，一打开就能看到：开着 = 草稿（不上线），关掉再保存才会发布
+      - name: draft
+        label: 草稿（开启后不会在网站上发布）
+        widget: boolean
+        default: true
+        hint: '写完要发布：把这个开关关掉，再点保存；约 1–2 分钟后线上生效'
+      - { name: title, label: 标题, widget: string }
+      - { name: description, label: 摘要, widget: text, hint: '一两句话，用于文章列表、RSS 和分享卡片' }
+      - name: date
+        label: 发布日期
+        widget: datetime
+        date_format: 'YYYY-MM-DD'
+        time_format: false
+        format: 'YYYY-MM-DD'
+        default: '{{now}}'
+      - name: updated
+        label: 更新日期
+        widget: datetime
+        date_format: 'YYYY-MM-DD'
+        time_format: false
+        format: 'YYYY-MM-DD'
+        required: false
+        hint: '修改过旧文章时填写，文章页会显示“更新于”'
+      - { name: tags, label: 标签, widget: list, required: false }
+      - { name: cover, label: 封面图, widget: image, required: false, hint: '用于分享卡片，可不填' }
+      - { name: body, label: 正文, widget: markdown }
+
+  - name: pages
+    label: 页面
+    files:
+      - name: about
+        label: 关于页
+        file: src/content/pages/about.md
+        format: frontmatter
+        fields:
+          - { name: title, label: 标题, widget: string }
+          - { name: description, label: 摘要, widget: text, required: false }
+          - { name: body, label: 正文, widget: markdown }
+
+  - name: settings
+    label: 站点设置
+    files:
+      - name: site
+        label: 站点信息与导航
+        file: src/data/site.json
+        fields:
+          - { name: name, label: 字标, widget: string, hint: '页头显示的名字；末尾的数字（没有数字则是最后一个单词）会用强调色显示' }
+          - { name: title, label: 完整站名, widget: string, hint: '浏览器标签页、RSS、分享卡片里使用' }
+          - { name: description, label: 站点简介, widget: text, hint: '搜索引擎和分享时显示' }
+          - { name: tagline, label: 首页大标题, widget: string }
+          - { name: intro, label: 首页自我介绍, widget: text }
+          - { name: author, label: 作者名, widget: string, hint: '博客作者的名字' }
+          - { name: github, label: GitHub 链接, widget: string }
+          - name: nav
+            label: 导航菜单
+            widget: list
+            min: 1
+            summary: '{{fields.label}}　{{fields.href}}'
+            hint: '页头的链接。站内页面的地址以 / 开头并以 / 结尾，如 /posts/'
+            fields:
+              - { name: label, label: 名称, widget: string }
+              - { name: href, label: 地址, widget: string }

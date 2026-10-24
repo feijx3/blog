@@ -1,0 +1,44 @@
+/* 前台与后台共用的设计变量。 */
+:root {
+  color-scheme: light dark;
+
+  --bg: light-dark(#faf9f5, #262624);
+  --surface: light-dark(#f5f4ed, #2e2e2b);
+  --surface-2: light-dark(#f0eee6, #363633);
+  --pill: light-dark(#e8e6dc, #3d3d3a);
+  --code-bg: light-dark(#f3f1e9, #1f1e1d);
+
+  --border: light-dark(#e8e6dc, #3d3d3a);
+  --border-strong: light-dark(#d1cfc5, #55544f);
+
+  --text: light-dark(#141413, #faf9f5);
+  --text-2: light-dark(#3d3d3a, #d1cfc5);
+  --text-muted: light-dark(#5e5d59, #a3a198);
+
+  /* 填充与文字分别取色，保证对比度。 */
+  --accent: light-dark(#c6613f, #d97757);
+  --accent-text: light-dark(#b0512f, #e8896a);
+  --selection: light-dark(#f1d4c7, #5a3b2f);
+
+  --font-sans: system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Noto Sans CJK SC', 'Noto Sans SC', 'Source Han Sans SC', sans-serif;
+  --font-serif: 'Noto Serif SC Variable', 'Noto Serif SC', 'Songti SC', 'Source Han Serif SC',
+    'Noto Serif CJK SC', 'Palatino Linotype', Palatino, Georgia, serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono',
+    monospace;
+
+  /* 页头与所有页面的内容共用同一列宽：47.5rem = 760px，去掉两侧 1.25rem 内边距后正文 720px */
+  --container: 47.5rem;
+  --measure: 44rem;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}

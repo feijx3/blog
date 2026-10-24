@@ -1,0 +1,106 @@
+/*! Derived from GitHub's Primer themes bundled with giscus (MIT License)
+ * Copyright (c) 2018 GitHub Inc.
+ * https://github.com/primer/primitives/blob/main/LICENSE
+ * Colours re-tuned to match blog.zelix.asia (warm paper palette, clay accent).
+ */
+
+main {
+  --color-prettylights-syntax-comment: #6e7781;
+  --color-prettylights-syntax-constant: #0550ae;
+  --color-prettylights-syntax-entity: #8250df;
+  --color-prettylights-syntax-storage-modifier-import: #24292f;
+  --color-prettylights-syntax-entity-tag: #116329;
+  --color-prettylights-syntax-keyword: #cf222e;
+  --color-prettylights-syntax-string: #0a3069;
+  --color-prettylights-syntax-variable: #953800;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
+  --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
+  --color-prettylights-syntax-invalid-illegal-bg: #82071e;
+  --color-prettylights-syntax-carriage-return-text: #f6f8fa;
+  --color-prettylights-syntax-carriage-return-bg: #cf222e;
+  --color-prettylights-syntax-string-regexp: #116329;
+  --color-prettylights-syntax-markup-list: #3b2300;
+  --color-prettylights-syntax-markup-heading: #0550ae;
+  --color-prettylights-syntax-markup-italic: #24292f;
+  --color-prettylights-syntax-markup-bold: #24292f;
+  --color-prettylights-syntax-markup-deleted-text: #82071e;
+  --color-prettylights-syntax-markup-deleted-bg: #ffebe9;
+  --color-prettylights-syntax-markup-inserted-text: #116329;
+  --color-prettylights-syntax-markup-inserted-bg: #dafbe1;
+  --color-prettylights-syntax-markup-changed-text: #953800;
+  --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
+  --color-prettylights-syntax-markup-ignored-text: #eaeef2;
+  --color-prettylights-syntax-markup-ignored-bg: #0550ae;
+  --color-prettylights-syntax-meta-diff-range: #8250df;
+  --color-prettylights-syntax-brackethighlighter-angle: #57606a;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f;
+  --color-prettylights-syntax-constant-other-reference-link: #0a3069;
+  --color-btn-text: #141413;
+  --color-btn-bg: #f0eee6;
+  --color-btn-border: rgb(20 20 19 / 14%);
+  --color-btn-shadow: 0 0 transparent;
+  --color-btn-inset-shadow: 0 0 transparent;
+  --color-btn-hover-bg: #e8e6dc;
+  --color-btn-hover-border: rgb(20 20 19 / 22%);
+  --color-btn-active-bg: #dedcd1;
+  --color-btn-active-border: rgb(20 20 19 / 22%);
+  --color-btn-selected-bg: #e8e6dc;
+  --color-btn-primary-text: #faf9f5;
+  --color-btn-primary-bg: #141413;
+  --color-btn-primary-border: transparent;
+  --color-btn-primary-shadow: 0 0 transparent;
+  --color-btn-primary-inset-shadow: 0 0 transparent;
+  --color-btn-primary-hover-bg: #c6613f;
+  --color-btn-primary-hover-border: transparent;
+  --color-btn-primary-selected-bg: #b0512f;
+  --color-btn-primary-selected-shadow: 0 0 transparent;
+  --color-btn-primary-disabled-text: rgb(250 249 245 / 80%);
+  --color-btn-primary-disabled-bg: #87867f;
+  --color-btn-primary-disabled-border: transparent;
+  --color-action-list-item-default-hover-bg: rgb(20 20 19 / 6%);
+  --color-segmented-control-bg: #e8e6dc;
+  --color-segmented-control-button-bg: #faf9f5;
+  --color-segmented-control-button-selected-border: #87867f;
+  --color-fg-default: #141413;
+  --color-fg-muted: #5e5d59;
+  --color-fg-subtle: #73726c;
+  --color-canvas-default: #faf9f5;
+  --color-canvas-overlay: #faf9f5;
+  --color-canvas-inset: #f5f4ed;
+  --color-canvas-subtle: #f5f4ed;
+  --color-border-default: #d1cfc5;
+  --color-border-muted: #e8e6dc;
+  --color-neutral-muted: rgb(135 134 127 / 20%);
+  --color-accent-fg: #b0512f;
+  --color-accent-emphasis: #c6613f;
+  --color-accent-muted: rgb(198 97 63 / 40%);
+  --color-accent-subtle: #f6e4dc;
+  --color-success-fg: #5b6f43;
+  --color-attention-fg: #9a6700;
+  --color-attention-muted: rgb(212 167 44 / 40%);
+  --color-attention-subtle: #f6ecd2;
+  --color-danger-fg: #bf4d43;
+  --color-danger-muted: rgb(191 77 67 / 40%);
+  --color-danger-subtle: #f6e0dd;
+  --color-primer-shadow-inset: inset 0 1px 0 rgb(20 20 19 / 6%);
+  --color-scale-gray-1: #e8e6dc;
+  --color-scale-blue-1: #f1d4c7;
+
+  /*! Extensions from @primer/css/alerts/flash.scss */
+  --color-social-reaction-bg-hover: var(--color-scale-gray-1);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
+}
+
+main .pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
+}
+
+main .gsc-loading-image {
+  background-image: url("https://github.githubassets.com/images/mona-loading-default.gif");
+}
+
+/* 与博客正文一致的字体栈 */
+main {
+  font-family: system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Noto Sans CJK SC', 'Noto Sans SC', 'Source Han Sans SC', sans-serif;
+}

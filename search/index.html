@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>搜索 · Really’s homepage</title><meta name="description" content="搜索本站文章。"><link rel="canonical" href="https://blog.zelix.asia/search/"><meta name="robots" content="noindex"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/theme.css"><link rel="alternate" type="application/rss+xml" title="Really’s homepage" href="/rss.xml"><meta name="generator" content="Astro v7.4.2"><meta property="og:site_name" content="Really’s homepage"><meta property="og:type" content="website"><meta property="og:title" content="搜索"><meta property="og:description" content="搜索本站文章。"><meta property="og:url" content="https://blog.zelix.asia/search/"><meta property="og:locale" content="zh_CN"><meta name="twitter:card" content="summary"><!-- 首屏前确定主题，避免深浅色闪烁 --><script>
+      (() => {
+        let t;
+        try { t = localStorage.getItem('theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = t;
+      })();
+    </script><script>(() => {
+  try {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (sessionStorage.getItem('intro-seen')) return;
+    sessionStorage.setItem('intro-seen', '1');
+    document.documentElement.setAttribute('data-intro', '');
+  } catch (e) {}
+})();</script><link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;:&quot;4199fdc0eb5447c7b97e935b108d85ac&quot;}"></script><link rel="stylesheet" href="/_astro/BaseLayout.n4ERacuw.css"></head><body><div class="intro" aria-hidden="true"><div class="intro-inner"><span class="wordmark">Really’s <span>homepage</span></span><span class="intro-line"></span></div></div><div class="nav-progress" aria-hidden="true"></div><script>
+  (() => {
+    const bar = document.querySelector('.nav-progress');
+    if (!bar || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const KEY = 'nav-progress';
+    let resumeTimer;
+
+    // 新页面：如果是从站内链接点过来的，从 70% 接着走完
+    let resumed = false;
+    try {
+      resumed = sessionStorage.getItem(KEY) === '1';
+      sessionStorage.removeItem(KEY);
+    } catch (e) {}
+
+    const finish = () => {
+      clearTimeout(resumeTimer);
+      bar.classList.add('is-done');
+      setTimeout(() => bar.classList.remove('is-running', 'is-resumed', 'is-done'), 700);
+    };
+
+    if (resumed) {
+      bar.classList.add('is-resumed');
+      if (document.readyState === 'complete') requestAnimationFrame(finish);
+      else window.addEventListener('load', () => requestAnimationFrame(finish), { once: true });
+      resumeTimer = setTimeout(finish, 4000); // 兜底：资源卡住也要收尾
+    }
+
+    // 从 bfcache 返回时页面不会重新加载，不能让进度条停在半路
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) bar.classList.remove('is-running', 'is-resumed', 'is-done');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
+      if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
+      const url = new URL(link.href);
+      if (url.origin !== location.origin) return;
+      if (url.pathname === location.pathname && url.search === location.search) return; // 同页锚点
+      if (/\.[^/]+$/.test(url.pathname) && !/\.html?$/.test(url.pathname)) return; // 下载文件、rss.xml 等
+      bar.classList.remove('is-done', 'is-resumed');
+      bar.classList.add('is-running');
+      try {
+        sessionStorage.setItem(KEY, '1');
+      } catch (e) {}
+      // 兜底：跳转被取消（比如按了 Esc）时，进度条不能一直挂着
+      setTimeout(() => bar.classList.remove('is-running'), 10000);
+    });
+  })();
+</script><a class="skip-link" href="#main">跳到正文</a><header class="site-header"><div class="container header-inner"><a class="wordmark" href="/" aria-label="Really’s homepage 首页">Really’s <span>homepage</span></a><nav aria-label="主导航"><ul class="nav"><li><a href="/posts/">文章</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li><li><a href="/search/" aria-current="page">搜索</a></li><li><button id="theme-toggle" class="theme-toggle" type="button" aria-label="切换深色 / 浅色模式" title="切换深色 / 浅色模式"><svg class="icon icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.25 13.1A8.25 8.25 0 1 1 10.9 3.75a6.6 6.6 0 0 0 9.35 9.35Z"/></svg><svg class="icon icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3.75"/><path d="M12 2.75v1.9M12 19.35v1.9M2.75 12h1.9M19.35 12h1.9M5.45 5.45l1.35 1.35M17.2 17.2l1.35 1.35M5.45 18.55l1.35-1.35M17.2 6.8l1.35-1.35"/></svg></button><script type="module">var e=document.documentElement,t=document.getElementById(`theme-toggle`),n=t=>{e.dataset.theme=t,window.dispatchEvent(new CustomEvent(`themechange`,{detail:t}))};t?.addEventListener(`click`,()=>{let t=e.dataset.theme===`dark`?`light`:`dark`;n(t);try{localStorage.setItem(`theme`,t)}catch{}}),matchMedia(`(prefers-color-scheme: dark)`).addEventListener(`change`,e=>{let t=null;try{t=localStorage.getItem(`theme`)}catch{}t!==`light`&&t!==`dark`&&n(e.matches?`dark`:`light`)});</script></li></ul></nav></div></header><main id="main" class="container"><header class="page-header"><h1 class="page-title">搜索</h1><p class="page-lead">在所有文章里查找关键词。</p></header><div id="search" class="search-box"></div><script src="/pagefind/pagefind-ui.js"></script><script>(function(){const hasIndex = true;
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const el = document.getElementById('search');
+      if (!hasIndex || typeof PagefindUI === 'undefined') {
+        el.innerHTML = '<p class="muted">搜索索引在执行 <code>npm run build</code> 之后才会生成，开发模式下不可用。</p>';
+        return;
+      }
+      new PagefindUI({
+        element: '#search',
+        showImages: false,
+        showSubResults: true,
+        excerptLength: 40,
+        resetStyles: false,
+        translations: {
+          placeholder: '搜索文章…',
+          clear_search: '清除',
+          load_more: '加载更多结果',
+          search_label: '搜索本站',
+          filters_label: '筛选',
+          zero_results: '没有找到与「[SEARCH_TERM]」相关的内容',
+          many_results: '找到 [COUNT] 条与「[SEARCH_TERM]」相关的结果',
+          one_result: '找到 [COUNT] 条与「[SEARCH_TERM]」相关的结果',
+          alt_search: '没有找到「[SEARCH_TERM]」，改为显示「[DIFFERENT_TERM]」的结果',
+          search_suggestion: '没有找到「[SEARCH_TERM]」，试试：',
+          searching: '正在搜索「[SEARCH_TERM]」…',
+        },
+      });
+      const input = el.querySelector('input');
+      const q = new URLSearchParams(location.search).get('q');
+      if (input) {
+        if (q) {
+          input.value = q;
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+        input.focus();
+      }
+    });
+  })();</script></main></body></html>
